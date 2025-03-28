@@ -1,4 +1,18 @@
-<!-- markdownlint-disable first-line-h1 -->
+from peft import LoraConfig, get_peft_model
+
+# إعداد ضبط LoRA
+peft_config = LoraConfig(
+    r=8,
+    lora_alpha=16,
+    target_modules=["q_proj", "v_proj"],
+    lora_dropout=0.05,
+    bias="none"
+)
+
+model = get_peft_model(model, peft_config)
+
+# التدريب على بيانات مخصصة (مثال)
+train_dataset = ["السؤال: كيف أفعل كذا؟\nالجواب: إليك الطريقة...", ...]<!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable html -->
 <!-- markdownlint-disable no-duplicate-header -->
 
